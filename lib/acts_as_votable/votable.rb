@@ -11,8 +11,9 @@ module ActsAsVotable
       aliases = {
 
         :vote_up => [
-          :up_by, :upvote_by, :like_by, :liked_by, :vote_by, 
-          :up_from, :upvote_from, :upvote_by, :like_from, :liked_from, :vote_from 
+          :up_by, :upvote_by, :like_by, :liked_by, :vote_by,
+          :up_from, :upvote_from, :upvote_by, :like_from, :liked_from, :vote_from,
+          :applaud_by
         ],
 
         :vote_down => [
@@ -21,7 +22,7 @@ module ActsAsVotable
         ],
 
         :up_votes => [
-          :true_votes, :ups, :upvotes, :likes, :positives, :for_votes,
+          :true_votes, :ups, :upvotes, :likes, :positives, :for_votes, :applauds
         ],
 
         :down_votes => [

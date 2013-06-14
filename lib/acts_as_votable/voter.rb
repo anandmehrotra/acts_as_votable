@@ -5,10 +5,10 @@ module ActsAsVotable
 
       # allow user to define these
       aliases = {
-        :vote_up_for   => [:likes, :upvotes, :up_votes],
+        :vote_up_for   => [:likes, :upvotes, :up_votes, :applauds],
         :vote_down_for => [:dislikes, :downvotes, :down_votes],
         :unvote_for    => [:unlike, :undislike],
-        :voted_up_on?   => [:voted_up_for?, :liked?],
+        :voted_up_on?   => [:voted_up_for?, :liked?, :applauded?],
         :voted_down_on? => [:voted_down_for?, :disliked?]
       }
 
