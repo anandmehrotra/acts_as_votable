@@ -1,6 +1,6 @@
 # Acts As Votable (aka Acts As Likeable)
 
-![Build Status](https://travis-ci.org/ryanto/acts_as_votable.png?branch=master)
+[![Build Status](https://travis-ci.org/ryanto/acts_as_votable.png)](https://travis-ci.org/ryanto/acts_as_votable)
 
 Acts As Votable is a Ruby Gem specifically written for Rails/ActiveRecord models.
 The main goals of this gem are:
@@ -13,12 +13,12 @@ The main goals of this gem are:
 
 ## Installation
 
-### Rails 3+
+### Rails 3.0, 3.1, 3.2, and 4.0+
 
 Just add the following to your Gemfile.
 
 ```ruby
-gem 'acts_as_votable', '~> 0.5.0'
+gem 'acts_as_votable', '~> 0.7.1'
 ```
 
 And follow that up with a ``bundle install``.
@@ -284,6 +284,9 @@ class AddCachedVotesToPosts < ActiveRecord::Migration
     add_index  :posts, :cached_votes_score
     add_index  :posts, :cached_votes_up
     add_index  :posts, :cached_votes_down
+    
+    # Uncomment this line to force caching of existing votes
+    # Post.find_each(&:update_cached_votes)
   end
 
   def self.down
@@ -297,7 +300,17 @@ end
 
 ## Testing
 
-All tests follow the RSpec format and are located in the spec directory
+All tests follow the RSpec format and are located in the spec directory.
+They can be run with:
+
+```
+rake spec
+```
+
+## License
+
+Acts as votable is released under the [MIT
+License](http://www.opensource.org/licenses/MIT).
 
 ## TODO
 

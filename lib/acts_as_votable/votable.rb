@@ -6,8 +6,8 @@ module ActsAsVotable
     include Helpers::Words
 
     def self.included base
- 
-      # allow the user to define these himself 
+
+      # allow the user to define these himself
       aliases = {
 
         :vote_up => [
@@ -28,15 +28,13 @@ module ActsAsVotable
         :down_votes => [
           :false_votes, :downs, :downvotes, :dislikes, :negatives
         ],
-        :unvote => [
-          :unliked_by, :undisliked_by
+        :unvote_for => [
+          :unvote_up, :unvote_down, :unliked_by, :undisliked_by
         ]
       }
 
       base.class_eval do
-
-        belongs_to :votable, :polymorphic => true
-        has_many   :votes, :class_name => "ActsAsVotable::Vote", :as => :votable do
+        has_many :votes, :class_name => 'ActsAsVotable::Vote', :as => :votable, :dependent => :destroy do
           def voters
             includes(:voter).map(&:voter)
           end
@@ -131,6 +129,10 @@ module ActsAsVotable
       self.vote :voter => voter, :vote => false, :vote_scope => options[:vote_scope]
     end
 
+    def unvote_for  voter, options = {}
+      self.unvote :voter => voter, :vote_scope => options[:vote_scope]
+    end
+
     # caching
     def update_cached_votes
 
@@ -155,7 +157,7 @@ module ActsAsVotable
         )
       end
 
-      if ::ActiveRecord::VERSION::MAJOR < 4
+      if (::ActiveRecord::VERSION::MAJOR == 3) && (::ActiveRecord::VERSION::MINOR != 0)
         self.update_attributes(updates, :without_protection => true) if updates.size > 0
       else
         self.update_attributes(updates) if updates.size > 0
