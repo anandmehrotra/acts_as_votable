@@ -29,13 +29,15 @@ describe ActsAsVotable::Votable do
       @votable.save
     end
 
-    it "should return false when a vote with no voter is saved" do
-      @votable.vote.should be false
+    it "should return nil when a vote with no voter is saved" do
+      @votable.vote.should be nil
     end
 
     it "should have one vote when saved" do
-      @votable.vote :voter => @voter, :vote => 'yes'
+      returned_vote = @votable.vote :voter => @voter, :vote => 'yes'
       @votable.votes.size.should == 1
+      returned_vote.voter.should eq @voter
+      returned_vote.votable.should eq @votable
     end
 
     it "should have one vote when voted on twice by the same person" do

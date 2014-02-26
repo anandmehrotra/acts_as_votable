@@ -73,7 +73,7 @@ module ActsAsVotable
       self.vote_registered = false
 
       if options[:voter].nil?
-        return false
+        return nil
       end
 
       # find the vote
@@ -102,10 +102,10 @@ module ActsAsVotable
       if vote.save
         self.vote_registered = true if last_update != vote.updated_at
         update_cached_votes
-        return true
+        return vote
       else
         self.vote_registered = false
-        return false
+        return nil
       end
 
     end
