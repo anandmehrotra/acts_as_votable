@@ -1,7 +1,5 @@
 # Acts As Votable (aka Acts As Likeable)
 
-[![Build Status](https://travis-ci.org/ryanto/acts_as_votable.png)](https://travis-ci.org/ryanto/acts_as_votable)
-
 Acts As Votable is a Ruby Gem specifically written for Rails/ActiveRecord models.
 The main goals of this gem are:
 
@@ -10,6 +8,12 @@ The main goals of this gem are:
 - Allow any model to vote.  In other words, votes do not have to come from a user,
   they can come from any model (such as a Group or Team).
 - Provide an easy to write/read syntax.
+
+### Changes in this fork
+- New alias for ``vote_up_for`` : ``applauds``
+- New alias for ``voted_up_on?`` : ``applauded?``
+- The ``vote`` method of the ``Votable`` now returns the ``ActsAsVotable::Vote`` object instead of a boolean. 
+  If the save failed, it returns ``nil``
 
 ## Installation
 
