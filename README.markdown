@@ -12,7 +12,7 @@ The main goals of this gem are:
 ### Changes in this fork
 - New alias for ``vote_up_for`` : ``applauds``
 - New alias for ``voted_up_on?`` : ``applauded?``
-- The ``vote`` method of the ``Votable`` now returns the ``ActsAsVotable::Vote`` object instead of a boolean. 
+- The ``vote`` method of ``Votable`` now returns the ``ActsAsVotable::Vote`` object instead of a boolean. 
   If the save failed, it returns ``nil``
 
 ## Installation
